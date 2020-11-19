@@ -1,0 +1,8 @@
+# Ignore Everything
+*
+
+# Or directories
+!*/src
+!*/include
+!.gitignore
+!README.md
