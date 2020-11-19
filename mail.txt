@@ -1,0 +1,12 @@
+Skład zespołu:
+Krystian Kujawski
+Łukasz Pokorzyński
+Adam Steciuk
+Godzina zespołu 13:00
+
+Istotą projektu jest stworzenie systemu czasu rzeczywistego, który będzie symulował zbieranie danych z różnych stacji meteorologicznych i na ich podstawie będzie wyświetlał mapę z izotermami.
+Proces A będzie zbierał wygenerowane dane, które następnie zostaną przekazane procesowi B do wyznaczenia przebiegu izoterm. Wyznaczone wartości następnie zostaną przekazane procesowi C do zaprezentowania ich na symulowanej mapie. Proces D będzie odpowiedzialny za zarządzanie parametrami działania systemu (między innymi częstotliwość odświeżania mapy, generacja danych, liczba stacji meteorologicznych). W naszym systemie bardzo ważne będzie by utrzymać przetwarzanie danych w ściśle określonym rygorze w celu zapewnienia stałej częstotliwości odświeżania mapy.
+Aby sprawdzić wydajność systemu wykorzystamy program Genload do dodatkowego obciążenia procesora.
+Ze względu na potrzebę wizualnego przedstawiania efektów działania system będzie realizowany na systemie operacyjnym z GUI (np. Ubuntu).
+
+Dane o czasie obsługi będą jednocześnie zrzucanie do pliku, który następnie będzie można przetworzyć specjalnym skryptem do utworzenia histogramu wizualizującego poprawność działania systemu.
