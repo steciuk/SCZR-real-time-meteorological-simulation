@@ -84,3 +84,7 @@ void Stations::printStations() {
     }
 }
 
+vector<Station> Stations::getStations() {
+    return stations;
+}
+

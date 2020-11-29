@@ -20,6 +20,7 @@ public:
 
     void genMap();
     vector<vector<int>> getNumMap();
+    vector<Station> getStations();
     void printNumMap();
     void toFileNumMap(const string& filename);
     void fromFileNumMap(const string &filename);

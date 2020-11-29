@@ -13,6 +13,7 @@ public:
     ~Station();
 
     friend ostream& operator<<(ostream &strm, const Station& station);
+//    void *genTemp(void *threadarg);
 };
 
 
