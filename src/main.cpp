@@ -1,68 +1,106 @@
 #include <iostream>
 #include <pthread.h>
-#include <ctime>
 #include <chrono>
-#include "../include/Stations.h"
+#include <unistd.h>
+#include <csignal>
+#include <fstream>
+
+#include "utilities.h"
+#include "SharedMemory.h"
+#include "SharedQueue.h"
+#include "ProcessA.h"
+#include "ProcessB.h"
+#include "ProcessC.h"
 using namespace std;
 
-struct thread_data {
-    int thread_id;
-    int num;
-    chrono::high_resolution_clock::time_point t1;
-};
+void *LoggingThread(void *n);
 
-void *GenTemp(void *threadarg) {
-    struct thread_data *my_data;
-    my_data = (struct thread_data *) threadarg;
-
-    int num = my_data->num;
-    chrono::high_resolution_clock::time_point t1 = my_data->t1;
-
-    srand(time(nullptr));
-    for(int i=0; i<num; i++){
-        int result = 10 + (rand() % 40);
-        chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
-        chrono::duration<double, std::milli> time_span = t2 - t1;
-        string output =
-                "Station ID : " + to_string(my_data->thread_id) +
-                " Timestamp: " + to_string(time_span.count()) +
-                " Temp: " + to_string(result) + "\n";
-        cout << output;
-    }
-
-    pthread_exit(NULL);
-}
+template <typename T>
+pid_t startProcess();
 
 int main(){
-    Stations stations(100, 10, 1.0);
-    stations.genMap();
-    //stations.toFileNumMap("numMap.txt");
-    //stations.printNumMap();
-    //stations.fromFileNumMap("numMap.txt");
-    //stations.printNumMap();
-    //stations.printStations();
+    shm_unlink(SHMEM_AB);
+    shm_unlink(SHMEM_BC);
+    mq_unlink(MQUEUE_B);
+    mq_unlink(MQUEUE_C);
+    sem_unlink(AB_SEM_CONS);
+    sem_unlink(AB_SEM_PROD);
+    sem_unlink(BC_SEM_PROD);
+    sem_unlink(BC_SEM_PROD);
 
-    int numStations = stations.getStations().size();
-    pthread_t threads[numStations];
-    struct thread_data td[numStations];
+    sem_t *producerAB = sem_open(AB_SEM_PROD, O_CREAT, 0660, 1);
+    sem_t *consumerAB = sem_open(AB_SEM_CONS, O_CREAT, 0660, 0);
+    sem_t *producerBC = sem_open(BC_SEM_PROD, O_CREAT, 0660, 1);
+    sem_t *consumerBC = sem_open(BC_SEM_CONS, O_CREAT, 0660, 0);
+    mqd_t log_qB = mq_open(MQUEUE_B, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
+    mqd_t log_qC = mq_open(MQUEUE_C, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
 
-    int rc;
-    int i;
-    chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-    for( i = 0; i < numStations; i++ ) {
-        cout << "main() : creating thread, " << i << endl;
-        td[i].thread_id = i;
-        td[i].num = 30;
-        td[i].t1 = t1;
-        //       Station st = stations.getStations()[i];
-        rc = pthread_create(&threads[i], NULL, GenTemp, (void *)&td[i]);
-
-        if (rc) {
-            cout << "Error:unable to create thread," << rc << endl;
-            exit(-1);
-        }
+    pid_t procA, procB, procC;
+    pthread_t loggerB, loggerC;
+    int logger_idB, logger_idC;
+    procA = startProcess<ProcessA>();   //generator
+    procB = startProcess<ProcessB>();   //analyser
+    procC = startProcess<ProcessC>();   //visualiser
+    logger_idB = pthread_create(&loggerB, nullptr, LoggingThread, (void *) MQUEUE_B);
+    logger_idC = pthread_create(&loggerC, nullptr, LoggingThread, (void *) MQUEUE_C);
+    if(logger_idB) {
+        cout << "Error: unable to create thread, " << logger_idB << endl;
+        exit(-1);
+    } else if(logger_idC) {
+        cout << "Error: unable to create thread, " << logger_idC << endl;
+        exit(-1);
     }
-    pthread_exit(NULL);
+
+    char c = ' ';
+    while(c != 'q') {
+        cout << "Generator ID: " << procA << endl;
+        cout << "Analyser ID: " << procB << endl;
+        cout << "Visualiser ID: " << procC << endl;
+        cout << "LoggerB results in: " << LOG_FILE_B << endl;
+        cout << "LoggerC results in: " << LOG_FILE_C << endl;
+        cout << "To end, enter q: ";
+        cin >> c;
+    }
+
+    kill(procA, SIGTERM);
+    kill(procB, SIGTERM);
 
     return 0;
+}
+
+//universal logging thread for message queues
+void *LoggingThread(void *threadargs = nullptr) {
+    const char *logger_name;
+    if(threadargs == nullptr || ((const char *)threadargs != MQUEUE_B && (const char *)threadargs != MQUEUE_C)) {
+        cout << "Error: unable to recognize message queue name." << endl;
+        exit(-1);
+    }
+
+    logger_name = (const char *)threadargs;
+    SharedQueue logger(false, false, logger_name);
+    ofstream output;
+    (logger_name == MQUEUE_B) ? output.open(LOG_FILE_B) : output.open(LOG_FILE_C);
+
+    log_message log;
+    while(true) {
+        auto *temp = &log;
+        logger.pop(temp);
+
+        if (temp && output.good()) {
+            auto time = std::chrono::duration_cast<std::chrono::microseconds>(log.end - log.start).count();
+            output << log.id << ": " << time << endl;
+        }
+    }
+}
+
+template <typename T>
+pid_t startProcess() {
+    pid_t result = fork();
+    if (result == 0) {
+        T process;
+        process.operate();
+        return 0;
+    }
+    else
+        return result;
 }

@@ -1,3 +1,7 @@
+//
+// Created by jestemleon on 08.01.2021.
+//
+
 #ifndef SHAREDMEMORY_HPP
 #define SHAREDMEMORY_HPP
 
@@ -13,27 +17,27 @@
 #include <chrono>
 
 struct data {
-    int id{};
-    int val{};
-    std::chrono::system_clock::time_point timestamp{};
+    int id;
+    int val;
+    std::chrono::system_clock::time_point timestamp;
 };
 
 class SharedMemory {
 public:
-    SharedMemory(bool will_write, char *shm_name, char *sem_cons, char *sem_prod);
+    SharedMemory(bool will_write, const char *shm_name, const char *sem_cons, const char *sem_prod);
     ~SharedMemory();
 
     data *sh_data;
-    void push(unsigned char *buf);
-    void pop(unsigned char *buf);
+    void push(data *buf);
+    void pop(data *buf);
     int getSize() { return size; }
 
 private:
-    char *shm_name;
-    int shm_id{};
+    const char *shm_name;
+    int shm_id;
 
-    char* sem_prod;
-    char* sem_cons;
+    const char* sem_prod;
+    const char* sem_cons;
     sem_t* producer;
     sem_t* consumer;
 

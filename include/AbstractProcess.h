@@ -7,7 +7,8 @@
 
 
 class AbstractProcess {
-
+public:
+    [[noreturn]] virtual void operate() = 0;
 };
 
 

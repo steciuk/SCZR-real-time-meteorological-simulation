@@ -1,11 +1,15 @@
-#include "SharedMemory.hpp"
+//
+// Created by jestemleon on 08.01.2021.
+//
 
-SharedMemory::SharedMemory(bool will_write, char *shm_name, char *sem_cons, char *sem_prod) {
+#include "SharedMemory.h"
+
+SharedMemory::SharedMemory(bool will_write, const char *shm_name, const char *sem_cons, const char *sem_prod) {
     size = sizeof(data);
     shm_id = shm_open(shm_name, O_CREAT | O_RDWR, 0660);
     this->shm_name = shm_name;
 
-    ftruncate(shm_id, size);
+    ftruncate(shm_id, getSize());
 
     sh_data = will_write ? (data*)mmap(nullptr, size, PROT_WRITE, MAP_SHARED, shm_id, 0)
             : (data*)mmap(nullptr, size, PROT_READ, MAP_SHARED, shm_id, 0);
@@ -17,11 +21,6 @@ SharedMemory::SharedMemory(bool will_write, char *shm_name, char *sem_cons, char
     if((consumer = sem_open(sem_cons, 0)) == SEM_FAILED) {
         printf("%S", strerror(errorno));
     };
-
-    if(errorno != 0) {
-        exit(3);
-    }
-
     this->sem_cons = sem_cons;
     this->sem_prod = sem_prod;
 }
@@ -32,15 +31,14 @@ SharedMemory::~SharedMemory() {
     sem_unlink(sem_prod);
 }
 
-void SharedMemory::push(unsigned char* buf) {
-    sem_wait(producer);
-
-    sem_post(consumer);
+void SharedMemory::push(data *buf) {
+    sem_wait(this->producer);
+    memcpy(sh_data, buf, sizeof(data));
+    sem_post(this->consumer);
 }
 
-
-void SharedMemory::pop(unsigned char *buf) {
-    sem_wait(consumer);
-
-    sem_post(producer);
+void SharedMemory::pop(data *buf) {
+    sem_wait(this->consumer);
+    memcpy(buf, sh_data, sizeof(data));
+    sem_post(this->producer);
 }
