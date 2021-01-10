@@ -19,14 +19,7 @@ template <typename T>
 pid_t startProcess();
 
 int main(){
-    shm_unlink(SHMEM_AB);
-    shm_unlink(SHMEM_BC);
-    mq_unlink(MQUEUE_B);
-    mq_unlink(MQUEUE_C);
-    sem_unlink(AB_SEM_CONS);
-    sem_unlink(AB_SEM_PROD);
-    sem_unlink(BC_SEM_PROD);
-    sem_unlink(BC_SEM_PROD);
+
 
     sem_t *producerAB = sem_open(AB_SEM_PROD, O_CREAT, 0660, 1);
     sem_t *consumerAB = sem_open(AB_SEM_CONS, O_CREAT, 0660, 0);
@@ -64,6 +57,16 @@ int main(){
 
     kill(procA, SIGTERM);
     kill(procB, SIGTERM);
+    kill(procC, SIGTERM);
+
+    shm_unlink(SHMEM_AB);
+    shm_unlink(SHMEM_BC);
+    mq_unlink(MQUEUE_B);
+    mq_unlink(MQUEUE_C);
+    sem_unlink(AB_SEM_CONS);
+    sem_unlink(AB_SEM_PROD);
+    sem_unlink(BC_SEM_PROD);
+    sem_unlink(BC_SEM_PROD);
 
     return 0;
 }
