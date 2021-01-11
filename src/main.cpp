@@ -18,8 +18,20 @@ void *LoggingThread(void *n);
 template <typename T>
 pid_t startProcess();
 
-int main(){
+int main() {
+    pid_t procA, procB, procC;
+    pthread_t loggerB, loggerC;
+    int logger_idB, logger_idC;
 
+    char option, aff = ' ';
+    cout << "Choose scheduling policy and visualiser process affinity first:\n";
+    cout << "SCHEDULING POLICY:\n 1 - FIFO   2 - RR (RoundRobin)\n Other value - Default\n";
+    cout << "Choose option: ";
+    cin >> option;
+    if(option == '1' || option == '2') {
+        cout << "Should visualiser be bound to cpu core? [Y/N]: ";
+        cin >> aff;
+    }
 
     sem_t *producerAB = sem_open(AB_SEM_PROD, O_CREAT, 0660, 1);
     sem_t *consumerAB = sem_open(AB_SEM_CONS, O_CREAT, 0660, 0);
@@ -28,9 +40,6 @@ int main(){
     mqd_t log_qB = mq_open(MQUEUE_B, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
     mqd_t log_qC = mq_open(MQUEUE_C, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
 
-    pid_t procA, procB, procC;
-    pthread_t loggerB, loggerC;
-    int logger_idB, logger_idC;
     procA = startProcess<ProcessA>();   //generator
     procB = startProcess<ProcessB>();   //analyser
     procC = startProcess<ProcessC>();   //visualiser
@@ -42,6 +51,39 @@ int main(){
     } else if(logger_idC) {
         cout << "Error: unable to create thread, " << logger_idC << endl;
         exit(-1);
+    }
+
+    sched_param ps{99};
+    int result = 0;
+    switch(option) {
+        case '1':
+            result |= sched_setscheduler(procA, SCHED_FIFO, &ps);
+            result |= sched_setscheduler(procB, SCHED_FIFO, &ps);
+            result |= sched_setscheduler(procC, SCHED_FIFO, &ps);
+            break;
+        case '2':
+            result |= sched_setscheduler(procA, SCHED_RR, &ps);
+            result |= sched_setscheduler(procB, SCHED_RR, &ps);
+            result |= sched_setscheduler(procC, SCHED_RR, &ps);
+            break;
+        default:
+            break;
+    }
+    if(result) {
+        cout << "Error: unable to change scheduling policy.\n" << strerror(errno) << endl;
+        exit(-1);
+    }
+
+    if(aff == 'Y' || aff == 'y') {
+        cpu_set_t cpuSet;
+        CPU_ZERO(&cpuSet);
+        CPU_SET(3, &cpuSet);
+        result |= sched_setaffinity(procC, sizeof(cpu_set_t), &cpuSet);
+
+        if(result) {
+            cout << "Error: unable to change affinity.\n" << strerror(errno) << endl;
+            exit(-1);
+        }
     }
 
     char c = ' ';

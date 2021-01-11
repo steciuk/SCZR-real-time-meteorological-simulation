@@ -204,6 +204,7 @@ SCZR: CMakeFiles/SCZR.dir/src/ProcessB.cpp.o
 SCZR: CMakeFiles/SCZR.dir/src/ProcessA.cpp.o
 SCZR: CMakeFiles/SCZR.dir/src/ProcessC.cpp.o
 SCZR: CMakeFiles/SCZR.dir/build.make
+SCZR: /usr/lib64/librt.so
 SCZR: CMakeFiles/SCZR.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable SCZR"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SCZR.dir/link.txt --verbose=$(VERBOSE)
