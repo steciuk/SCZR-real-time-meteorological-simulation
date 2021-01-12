@@ -19,6 +19,7 @@
 #define MAX_STATIONS 15
 
 struct data {
+    int id;
     float coords[MAX_STATIONS][3];
     std::chrono::system_clock::time_point timestamp;
 };

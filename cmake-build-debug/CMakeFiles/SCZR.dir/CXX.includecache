@@ -8,7 +8,7 @@
 
 ../include/AbstractProcess.h
 
-../include/ProcessC.h
+../include/ProcessB.h
 utilities.h
 ../include/utilities.h
 AbstractProcess.h
@@ -50,21 +50,13 @@ cstring
 
 ../include/utilities.h
 
-/home/jestemleon/Dokumenty/SCZR/src/ProcessC.cpp
-ProcessC.h
-/home/jestemleon/Dokumenty/SCZR/src/ProcessC.h
-allegro5/allegro5.h
--
-allegro5/allegro_font.h
--
-allegro5/allegro_primitives.h
--
-iostream
--
-cmath
--
+/home/jestemleon/Dokumenty/SCZR/src/ProcessB.cpp
+ProcessB.h
+/home/jestemleon/Dokumenty/SCZR/src/ProcessB.h
 cstdlib
 -
-cfloat
+unistd.h
+-
+iostream
 -
 

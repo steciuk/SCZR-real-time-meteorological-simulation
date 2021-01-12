@@ -33,7 +33,6 @@
         {
             log_message log{};
             shmBC.pop(&fromB);
-            auto end = std::chrono::system_clock::now();
 
             float max_temp = -1000;
             float min_temp = 1000;
@@ -76,13 +75,8 @@
             std::string s2 = std::to_string((int)min_temp);
             char const *min_temp_char = s2.c_str();  //use char const* as target type
 
-            log.start = fromB.timestamp;
-            log.end = end;
-            queueC.push(&log);
-
             if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
                 break;
-
 
             al_clear_to_color(al_map_rgb(255, 255, 255));
             for (int w = 0; w < 620; w+=4) {
@@ -151,7 +145,12 @@
 
             al_flip_display();
 
-
+            auto end = std::chrono::system_clock::now();
+            log.id = fromB.id;
+            log.temp = fromB.coords[fromB.id][2];
+            log.start = fromB.timestamp;
+            log.end = end;
+            queueC.push(&log);
         }
 
         al_destroy_font(font);
