@@ -16,7 +16,7 @@
 #include <semaphore.h>
 #include <chrono>
 
-#define MAX_STATIONS 400
+#define MAX_STATIONS 200
 
 struct data {
     int id;

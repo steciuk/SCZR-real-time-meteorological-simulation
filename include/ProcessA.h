@@ -15,7 +15,7 @@ class ProcessA : public AbstractProcess {
 public:
     ProcessA() : queueA(true, false, MQUEUE_A) {};
 
-    [[noreturn]] void operate(int stations) override;
+    [[noreturn]] void operate(int stations, int x, int y) override;
 private:
     SharedQueue queueA;
 };

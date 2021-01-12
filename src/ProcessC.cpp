@@ -12,7 +12,7 @@
 #include <cfloat>
 
 
-[[noreturn]] void ProcessC::operate(int stations) {
+[[noreturn]] void ProcessC::operate(int stations, int x, int y) {
     data fromB{};
     log_message log{};
     float dane[MAX_STATIONS][3]{};

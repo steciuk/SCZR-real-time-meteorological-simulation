@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <iostream>
 
-[[noreturn]] void ProcessB::operate(int stations) {
+[[noreturn]] void ProcessB::operate(int stations, int x, int y) {
     bool buff = false;
     data toC{};
     for(int i = 0; i < stations; i++) {

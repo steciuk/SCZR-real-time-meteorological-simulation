@@ -16,7 +16,7 @@ public:
         queueA(false, false, MQUEUE_A),
         queueB(true, true, MQUEUE_B) {};
 
-    [[noreturn]] void operate(int stations) override;
+    [[noreturn]] void operate(int stations, int x, int y) override;
 private:
     SharedMemory shmBC;
     SharedQueue queueA, queueB;

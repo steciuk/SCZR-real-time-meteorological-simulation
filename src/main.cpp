@@ -16,13 +16,13 @@ using namespace std;
 void *LoggingThread(void *n);
 
 template <typename T>
-pid_t startProcess(int s);
+pid_t startProcess(int s, int x, int y);
 
 int main() {
     pid_t procA, procB, procC;
     pthread_t loggerB, loggerC;
     int logger_idB, logger_idC;
-    int stations;
+    int stations, x, y;
 
     char option, aff = ' ';
     cout << "Choose scheduling policy and visualiser process affinity first:\n";
@@ -33,9 +33,16 @@ int main() {
         cout << "Should visualiser be bound to cpu core? [Y/N]: ";
         cin >> aff;
     }
-    cout << "How many stations should be visualised? (between 1 - 400): ";
+    cout << "What size should the map be? It will determine the number of possible stations.\n"
+            "X: ";
+    cin >> x;
+    cout << "Y: ";
+    cin >> y;
+
+    cout << "How many stations should be visualised?\n"
+            "Between 1 - 200, not bigger than " << x * y << ": ";
     cin >> stations;
-    if(stations < 1 || stations > 400) {
+    if(stations < 1 || stations > 200 || stations > x * y) {
         cout << "Incorrect amount. Please write correct number: ";
         cin >> stations;
     }
@@ -46,9 +53,9 @@ int main() {
     mqd_t log_qB = mq_open(MQUEUE_B, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
     mqd_t log_qC = mq_open(MQUEUE_C, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
 
-    procA = startProcess<ProcessA>(stations);   //generator
-    procB = startProcess<ProcessB>(stations);   //buffer
-    procC = startProcess<ProcessC>(stations);   //visualiser
+    procA = startProcess<ProcessA>(stations, x, y);   //generator
+    procB = startProcess<ProcessB>(stations, x, y);   //buffer
+    procC = startProcess<ProcessC>(stations, x, y);   //visualiser
     logger_idB = pthread_create(&loggerB, nullptr, LoggingThread, (void *) MQUEUE_B);
     logger_idC = pthread_create(&loggerC, nullptr, LoggingThread, (void *) MQUEUE_C);
     if(logger_idB) {
@@ -95,7 +102,7 @@ int main() {
     char c = ' ';
     while(c != 'q') {
         cout << "Generator ID: " << procA << endl;
-        cout << "Analyser ID: " << procB << endl;
+        cout << "Buffer ID: " << procB << endl;
         cout << "Visualiser ID: " << procC << endl;
         cout << "LoggerB results in: " << LOG_FILE_B << endl;
         cout << "LoggerC results in: " << LOG_FILE_C << endl;
@@ -143,11 +150,11 @@ void *LoggingThread(void *threadargs = nullptr) {
 }
 
 template <typename T>
-pid_t startProcess(int s) {
+pid_t startProcess(int s, int x, int y) {
     pid_t result = fork();
     if (result == 0) {
         T process;
-        process.operate(s);
+        process.operate(s, x, y);
         return 0;
     }
     else

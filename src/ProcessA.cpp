@@ -51,11 +51,11 @@ void *RunStation(void *threadarg) {
     }
 }
 
-[[noreturn]] void ProcessA::operate(int stations) {
+[[noreturn]] void ProcessA::operate(int stations, int x_val, int y_val) {
     //map params
     int seed = 0;
-    int x = 20;
-    int y = 20;
+    int x = x_val;
+    int y = y_val;
 
     //gen params
     float maxTempStep = 1.0;
