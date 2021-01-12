@@ -15,7 +15,6 @@ class ProcessA : public AbstractProcess {
 public:
     ProcessA() : queueA(true, false, MQUEUE_A) {};
 
-    //void *RunStation(void *threadarg);
     [[noreturn]] void operate(int stations) override;
 private:
     SharedQueue queueA;

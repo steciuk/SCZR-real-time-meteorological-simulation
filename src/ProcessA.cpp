@@ -33,8 +33,6 @@ void *RunStation(void *threadarg) {
     int maxTemp = my_data->maxTemp;
     srand(my_data->seed);
 
-    //station_message toB{};
-
     while(true) {
         station_message toB{};
         float f = (float)rand() / RAND_MAX;
@@ -53,10 +51,7 @@ void *RunStation(void *threadarg) {
         my_data->mq->push(&toB);
         //sleep(1 + rand() % 3);
     }
-
-    pthread_exit(NULL);
 }
-
 
 [[noreturn]] void ProcessA::operate(int stations) {
     //map params
@@ -101,7 +96,7 @@ void *RunStation(void *threadarg) {
         cout << endl;
     }
 
-    //startig temps
+    //starting temps
     for(int i=0; i < stations; i++){
         int startingTemp = (rand() % maxTemp) + minTemp;
         stationsData[i][2] = startingTemp;

@@ -81,7 +81,7 @@
             al_clear_to_color(al_map_rgb(255, 255, 255));
             for (int w = 0; w < 620; w+=4) {
                 for (int h = 0; h < 480; h+=4) {
-                     for (int i = 0; i < 10; ++i) {
+                     for (int i = 0; i < stations; ++i) {
                          current_x = ((dane[i][0]-min_x)*(620/(max_x-min_x)));
                          current_y = ((dane[i][1]-min_y)*(480/(max_y-min_y)));
                          dists[i] = abs((current_x - w) * (current_x - w)) + abs((current_y - h) * (current_y - h)) + FLT_EPSILON;
@@ -134,14 +134,6 @@
                 al_draw_text(font, al_map_rgb(0, 0, 0), current_x, current_y, ALLEGRO_ALIGN_CENTER,
                              temp_char);
             }
-//                al_draw_text(font, al_map_rgb(0, 0, 0), max_temperature_x, max_temperature_y, ALLEGRO_ALIGN_CENTER,
-//                             max_temp_char);
-//                al_draw_text(font, al_map_rgb(0, 0, 0), min_temperature_x, min_temperature_y, ALLEGRO_ALIGN_CENTER,
-//                             min_temp_char);
-
-
-
-
 
             al_flip_display();
 
