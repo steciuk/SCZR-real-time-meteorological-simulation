@@ -17,7 +17,6 @@ struct thread_data {
     double maxStep;
     int minTemp;
     int maxTemp;
-    int seed;
     SharedQueue *mq;
 };
 
@@ -31,7 +30,6 @@ void *RunStation(void *threadarg) {
     float maxStep = my_data->maxStep;
     int minTemp = my_data->minTemp;
     int maxTemp = my_data->maxTemp;
-    srand(my_data->seed);
 
     while(true) {
         station_message toB{};
@@ -49,7 +47,7 @@ void *RunStation(void *threadarg) {
         toB.val = temp;
         toB.timestamp = std::chrono::system_clock::now();
         my_data->mq->push(&toB);
-        sleep(1 + rand() % 3);
+//        sleep(1 + rand() % 3);
     }
 }
 
@@ -115,7 +113,6 @@ void *RunStation(void *threadarg) {
         td[iter].maxStep = maxTempStep;
         td[iter].minTemp = minTemp;
         td[iter].maxTemp = maxTemp;
-        td[iter].seed = seed;
         td[iter].mq = &queueA;
 
         rc = pthread_create(&threads[iter], nullptr, RunStation, (void *) &td[iter]);
