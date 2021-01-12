@@ -49,7 +49,7 @@ void *RunStation(void *threadarg) {
         toB.val = temp;
         toB.timestamp = std::chrono::system_clock::now();
         my_data->mq->push(&toB);
-        //sleep(1 + rand() % 3);
+        sleep(1 + rand() % 3);
     }
 }
 
@@ -89,12 +89,12 @@ void *RunStation(void *threadarg) {
         numMap[rx][ry] = 1;
     }
 
-    for(int i=0; i<x; i++) {
-        for(int j=0; j<y; j++)
-            cout << numMap[i][j];
-
-        cout << endl;
-    }
+//    for(int i=0; i<x; i++) {
+//        for(int j=0; j<y; j++)
+//            cout << numMap[i][j];
+//
+//        cout << endl;
+//    }
 
     //starting temps
     for(int i=0; i < stations; i++){
@@ -108,7 +108,6 @@ void *RunStation(void *threadarg) {
     int iter;
 
     for( iter = 0; iter < stations; iter++ ) {
-        cout <<"creating thread: " << iter << endl;
         td[iter].id = iter;
         td[iter].x = stationsData[iter][0];
         td[iter].y = stationsData[iter][1];
