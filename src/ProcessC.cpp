@@ -97,7 +97,6 @@
 //            if(event.type == ALLEGRO_EVENT_KEY_DOWN)
 //            {
                 al_clear_to_color(al_map_rgb(255, 255, 255));
-                std::cout<<"Kurczak"<<std::endl;
                 for (int w = 0; w < 620; w+=4) {
                     for (int h = 0; h < 480; h+=4) {
                         for (int i = 0; i < 10; ++i) {
@@ -135,7 +134,7 @@
                             current_temperature += nom/den * dane[i][2];
                         }
 
-                        float step = 5;
+                        float step = 20;
                         int current_temperature_r = floor(     (current_temperature-min_temp)*(1/(max_temp-min_temp)) * step) * 255/step;
                         int current_temperature_g = floor( (1 - (current_temperature-min_temp)*(1/(max_temp-min_temp))) * step) * 111/step;
                         int current_temperature_b = floor( (1 - (current_temperature-min_temp)*(1/(max_temp-min_temp))) * step) * 255/step;
