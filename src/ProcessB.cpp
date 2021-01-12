@@ -7,20 +7,21 @@
 #include <unistd.h>
 
 [[noreturn]] void ProcessB::operate() {
-    data fromA{}, toC{};
-    log_message log{};
-
     while(true) {
-        shmAB.pop(&fromA);
+        data toC{};
+        station_message fromA;
+        log_message log{};
+
+        auto *temp = &fromA;
+        queueA.pop(temp);
         auto halfway = std::chrono::system_clock::now();
 
         log.id = fromA.id;
-        log.temp = fromA.temp;
         log.start = fromA.timestamp;
         log.end = halfway;
         queueB.push(&log);
 
-        toC.temp = fromA.temp / 3;
+        toC.temp = fromA.val / 3;
         toC.timestamp = std::chrono::system_clock::now();
         shmBC.push(&toC);
     }

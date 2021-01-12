@@ -12,14 +12,14 @@
 
 class ProcessB : public AbstractProcess {
 public:
-    ProcessB() : shmAB(false, SHMEM_AB, AB_SEM_CONS, AB_SEM_PROD),
-        shmBC(true, SHMEM_BC, BC_SEM_CONS, BC_SEM_PROD),
+    ProcessB() : shmBC(true, SHMEM_BC, BC_SEM_CONS, BC_SEM_PROD),
+        queueA(false, false, MQUEUE_A),
         queueB(true, true, MQUEUE_B) {};
 
     [[noreturn]] void operate() override;
 private:
-    SharedMemory shmAB, shmBC;
-    SharedQueue queueB;
+    SharedMemory shmBC;
+    SharedQueue queueA, queueB;
 };
 
 

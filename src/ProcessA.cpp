@@ -3,7 +3,9 @@
 //
 
 #include "ProcessA.h"
+#include <iostream>
 #include <cstdlib>
+#include <unistd.h>
 
 using namespace std;
 
@@ -16,7 +18,7 @@ struct thread_data {
     int minTemp;
     int maxTemp;
     int seed;
-    SharedMemory *shm;
+    SharedQueue *mq;
 };
 
 void *RunStation(void *threadarg) {
@@ -31,10 +33,10 @@ void *RunStation(void *threadarg) {
     int maxTemp = my_data->maxTemp;
     srand(my_data->seed);
 
-    data toB{};
-    int i = 0;
+    //station_message toB{};
 
-    while(i < 3) {
+    while(true) {
+        station_message toB{};
         double f = (double)rand() / RAND_MAX;
         double step = -maxStep + f * 2 * maxStep;
         temp += step;
@@ -43,21 +45,13 @@ void *RunStation(void *threadarg) {
         else if(temp < minTemp)
             temp = minTemp;
 
-        cout << id << endl;
-        cout << temp << endl;
-
-        /* do B przekazywane bedzie:
-        temp
-         x
-         y
-        */
-
         toB.id = id;
-        toB.temp = temp;
+        toB.x = x;
+        toB.y = y;
+        toB.val = temp;
         toB.timestamp = std::chrono::system_clock::now();
-        my_data->shm->push(&toB);
-        usleep(500000);
-        i++;
+        my_data->mq->push(&toB);
+        sleep(1);
     }
 
     pthread_exit(NULL);
@@ -130,7 +124,7 @@ void *RunStation(void *threadarg) {
         td[iter].minTemp = minTemp;
         td[iter].maxTemp = maxTemp;
         td[iter].seed = seed;
-        td[iter].shm = &shmAB;
+        td[iter].mq = &queueA;
 
         rc = pthread_create(&threads[iter], NULL, RunStation, (void *) &td[iter]);
 
@@ -139,5 +133,5 @@ void *RunStation(void *threadarg) {
             exit(-1);
         }
     }
-    pthread_exit(NULL);
+    while(true){} //to properly log every message, it has to work in background
 }

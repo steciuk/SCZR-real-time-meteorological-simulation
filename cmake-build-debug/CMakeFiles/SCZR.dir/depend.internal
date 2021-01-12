@@ -4,7 +4,7 @@
 CMakeFiles/SCZR.dir/src/ProcessA.cpp.o
  ../include/AbstractProcess.h
  ../include/ProcessA.h
- ../include/SharedMemory.h
+ ../include/SharedQueue.h
  ../include/utilities.h
  /home/jestemleon/Dokumenty/SCZR/src/ProcessA.cpp
 CMakeFiles/SCZR.dir/src/ProcessB.cpp.o

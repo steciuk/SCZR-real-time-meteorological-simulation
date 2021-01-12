@@ -37,6 +37,7 @@ int main() {
     sem_t *consumerAB = sem_open(AB_SEM_CONS, O_CREAT, 0660, 0);
     sem_t *producerBC = sem_open(BC_SEM_PROD, O_CREAT, 0660, 1);
     sem_t *consumerBC = sem_open(BC_SEM_CONS, O_CREAT, 0660, 0);
+    mqd_t data_qA = mq_open(MQUEUE_A, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
     mqd_t log_qB = mq_open(MQUEUE_B, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
     mqd_t log_qC = mq_open(MQUEUE_C, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
 
@@ -101,8 +102,9 @@ int main() {
     kill(procB, SIGTERM);
     kill(procC, SIGTERM);
 
-    shm_unlink(SHMEM_AB);
+    //shm_unlink(SHMEM_AB);
     shm_unlink(SHMEM_BC);
+    mq_unlink(MQUEUE_A);
     mq_unlink(MQUEUE_B);
     mq_unlink(MQUEUE_C);
     sem_unlink(AB_SEM_CONS);
@@ -133,7 +135,7 @@ void *LoggingThread(void *threadargs = nullptr) {
 
         if (temp && output.good()) {
             auto time = std::chrono::duration_cast<std::chrono::microseconds>(log.end - log.start).count();
-            output << log.id << " temp: " << log.temp << " time: " << time << endl;
+            output <<"Station ID: " << log.id << " time: " << time << endl;
         }
     }
 }

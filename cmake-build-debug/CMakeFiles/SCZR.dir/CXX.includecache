@@ -13,8 +13,8 @@ utilities.h
 ../include/utilities.h
 AbstractProcess.h
 ../include/AbstractProcess.h
-SharedMemory.h
-../include/SharedMemory.h
+SharedQueue.h
+../include/SharedQueue.h
 
 ../include/ProcessB.h
 utilities.h
@@ -71,24 +71,12 @@ cstring
 /home/jestemleon/Dokumenty/SCZR/src/ProcessA.cpp
 ProcessA.h
 /home/jestemleon/Dokumenty/SCZR/src/ProcessA.h
-cstdlib
+iostream
 -
-
-/home/jestemleon/Dokumenty/SCZR/src/ProcessB.cpp
-ProcessB.h
-/home/jestemleon/Dokumenty/SCZR/src/ProcessB.h
 cstdlib
 -
 unistd.h
 -
-
-/home/jestemleon/Dokumenty/SCZR/src/ProcessC.cpp
-ProcessC.h
-/home/jestemleon/Dokumenty/SCZR/src/ProcessC.h
-
-/home/jestemleon/Dokumenty/SCZR/src/SharedMemory.cpp
-SharedMemory.h
-/home/jestemleon/Dokumenty/SCZR/src/SharedMemory.h
 
 /home/jestemleon/Dokumenty/SCZR/src/main.cpp
 iostream

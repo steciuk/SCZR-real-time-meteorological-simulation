@@ -12,6 +12,7 @@
 //https://www.softprayog.in/programming/interprocess-communication-using-posix-message-queues-in-linux?PageSpeed=noscript
 
 struct station_message {
+    int id;
     int x, y;
     int val;
     std::chrono::system_clock::time_point timestamp;
@@ -37,7 +38,7 @@ public:
     template <typename T>
     void pop(T*& msg_struct) {
         char buf[msg_size];
-        auto result = mq_receive(this->mq, &buf[0], msg_size, 0);
+        auto result = mq_receive(mq, &buf[0], msg_size, 0);
 
         if(result != -1) {
             memcpy(msg_struct, buf, sizeof(T));

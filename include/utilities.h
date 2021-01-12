@@ -7,7 +7,8 @@
 
 const char MQUEUE_B[] = "/mqueue_b";
 const char MQUEUE_C[] = "/mqueue_c";
-const char SHMEM_AB[] = "/shmem_ab";
+const char MQUEUE_A[] = "/mqueue_a";
+//const char SHMEM_AB[] = "/shmem_ab";
 const char SHMEM_BC[] = "/shmem_bc";
 const char AB_SEM_CONS[] = "/ab_sem_cons";
 const char AB_SEM_PROD[] = "/ab_sem_prod";

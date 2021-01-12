@@ -3,7 +3,7 @@
 
 CMakeFiles/SCZR.dir/src/ProcessA.cpp.o: ../include/AbstractProcess.h
 CMakeFiles/SCZR.dir/src/ProcessA.cpp.o: ../include/ProcessA.h
-CMakeFiles/SCZR.dir/src/ProcessA.cpp.o: ../include/SharedMemory.h
+CMakeFiles/SCZR.dir/src/ProcessA.cpp.o: ../include/SharedQueue.h
 CMakeFiles/SCZR.dir/src/ProcessA.cpp.o: ../include/utilities.h
 CMakeFiles/SCZR.dir/src/ProcessA.cpp.o: ../src/ProcessA.cpp
 
