@@ -45,8 +45,8 @@
         float max_y = 0;
         int current_x, current_y;
         int r,g,b;
-        int max_temperature_x, max_temperature_y, min_temperature_x, min_temperature_y;
-        float fr, fg, fb, tmp, tmp2, current_temperature = 0;
+        int max_temperature_x, max_temperature_y, min_temperature_x, min_temperature_y, step;
+        float fr, fg, fb, tmp, tmp2, current_temperature_r, current_temperature_g, current_temperature_b, current_temperature = 0;
 
 
         for (int i = 0; i < 10; ++i) {
@@ -96,17 +96,17 @@
             {
                 first = false;
                 al_clear_to_color(al_map_rgb(255, 255, 255));
-//            al_lock_bitmap()
                 for (int w = 0; w < 620; w+=4) {
                     for (int h = 0; h < 480; h+=4) {
                         for (int i = 0; i < 10; ++i) {
                             current_x = ((dane[i][0]-min_x)*(620/(max_x-min_x)));
                             current_y = ((dane[i][1]-min_y)*(480/(max_y-min_y)));
                             if(current_y == h && current_x == w){
-                                tmp = 10;
+                                tmp = 1;
+
                             }else {
-                                tmp = 10 /
-                                      sqrt(abs((current_x - w) * (current_x - w)) + abs((current_y - h) * (current_y - h)));
+                                tmp = 1 /
+                                      sqrt((current_x - w) * (current_x - w) + (current_y - h) * (current_y - h));
                             }
                             current_temperature += dane[i][2]*tmp;
                             tmp2+=tmp;
@@ -123,12 +123,22 @@
                         }
 
                         current_temperature/=tmp2;
-                        std::cout<<current_temperature<<std::endl;
-
+//                        std::cout<<current_temperature<<std::endl;
                         current_temperature = ((current_temperature-min_temp)*(255/(max_temp-min_temp)));
+//                        current_temperature = ((current_temperature-min_temp)*(255/(max_temp-min_temp)));
+//                        current_temperature_r = ((current_temperature-min_temp)*(255/(max_temp-min_temp)));
+//                        current_temperature_g = 110 - ((current_temperature-min_temp)*(110/(max_temp-min_temp)));
+//                        current_temperature_b = 255 - ((current_temperature-min_temp)*(255/(max_temp-min_temp)));
 
+//                        step = 20;
+//                        current_temperature_r = floor(     (current_temperature-min_temp)*(1/(max_temp-min_temp)) * step) * 255/step;
+//                        current_temperature_g = floor( 1 - (current_temperature-min_temp)*(1/(max_temp-min_temp)) * step) * 111/step;
+//                        current_temperature_b = floor( 1 - (current_temperature-min_temp)*(1/(max_temp-min_temp)) * step) * 255/step;
+//                        std::cout << current_temperature_r << "\n B: "<<current_temperature_b<<"\nG: "<< current_temperature_g<<std::endl;
+//
+
+//                        al_draw_filled_rectangle(w, h, w+4, h+4, al_map_rgb(current_temperature_r, current_temperature_g, current_temperature_b));
                         al_draw_filled_rectangle(w, h, w+4, h+4, al_map_rgb(current_temperature, 127, 0));
-
                         current_temperature = 0;
                         tmp2 = 0;
                     }
