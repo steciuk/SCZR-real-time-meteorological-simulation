@@ -32,9 +32,9 @@
         float max_temp = -1000;
         float min_temp = 1000;
         float min_x = 0;
-        float max_x = 20;
+        float max_x = x;
         float min_y = 0;
-        float max_y = 20;
+        float max_y = y;
         int current_x, current_y;
         float tmp, tmp2, current_temperature = 0;
 
