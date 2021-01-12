@@ -8,13 +8,37 @@
 
 ../include/AbstractProcess.h
 
-../include/ProcessA.h
+../include/ProcessC.h
 utilities.h
 ../include/utilities.h
 AbstractProcess.h
 ../include/AbstractProcess.h
+SharedMemory.h
+../include/SharedMemory.h
 SharedQueue.h
 ../include/SharedQueue.h
+
+../include/SharedMemory.h
+iostream
+-
+unistd.h
+-
+sys/types.h
+-
+sys/ipc.h
+-
+sys/shm.h
+-
+fcntl.h
+-
+sys/mman.h
+-
+cstring
+-
+semaphore.h
+-
+chrono
+-
 
 ../include/SharedQueue.h
 mqueue.h
@@ -26,13 +50,21 @@ cstring
 
 ../include/utilities.h
 
-/home/jestemleon/Dokumenty/SCZR/src/ProcessA.cpp
-ProcessA.h
-/home/jestemleon/Dokumenty/SCZR/src/ProcessA.h
+/home/jestemleon/Dokumenty/ProjektSCZR/src/ProcessC.cpp
+ProcessC.h
+/home/jestemleon/Dokumenty/ProjektSCZR/src/ProcessC.h
+allegro5/allegro5.h
+-
+allegro5/allegro_font.h
+-
+allegro5/allegro_primitives.h
+-
+allegro5/allegro_color.h
+-
 iostream
 -
-cstdlib
+cmath
 -
-unistd.h
+cstdlib
 -
 

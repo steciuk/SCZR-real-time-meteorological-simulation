@@ -1,3 +1,3 @@
-/home/krystian/CLionProjects/SCZR/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/krystian/CLionProjects/SCZR/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/krystian/CLionProjects/SCZR/cmake-build-debug/CMakeFiles/SCZR.dir
+/home/jestemleon/Dokumenty/ProjektSCZR/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jestemleon/Dokumenty/ProjektSCZR/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/jestemleon/Dokumenty/ProjektSCZR/cmake-build-debug/CMakeFiles/SCZR.dir

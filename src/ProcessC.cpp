@@ -11,15 +11,12 @@
 #include <cmath>
 #include <cstdlib>
 
-[[noreturn]] void ProcessC::operate() {
+[[noreturn]] void ProcessC::operate(int stations) {
     data fromB{};
     log_message log{};
 
-
-
     bool first = true;
     float dane[10][3] = {{2,5,40}, {3,7,35}, {10, 17, 6}, {9, 2, 20}, {4, 1, 30}, {5, 8, 43}, {5,10,20}, {1,10,30},{10,10,30}, {5,5,4}};
-
 
         al_init();
         al_install_keyboard();
@@ -84,6 +81,15 @@
 
         while(true)
         {
+            log_message log{};
+
+            shmBC.pop(&fromB);
+            auto end = std::chrono::system_clock::now();
+
+            log.start = fromB.timestamp;
+            log.end = end;
+            queueC.push(&log);
+
             al_wait_for_event(queue, &event);
 
 //        if(event.type == ALLEGRO_EVENT_TIMER)

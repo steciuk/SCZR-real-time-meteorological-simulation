@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -pthread -lrt -g   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/krystian/CLionProjects/SCZR/include -I/home/krystian/CLionProjects/SCZR/allegro/include -I/home/krystian/CLionProjects/SCZR/allegro 
+CXX_INCLUDES = -I/home/jestemleon/Dokumenty/ProjektSCZR/include -I/home/jestemleon/Dokumenty/ProjektSCZR/allegro/include -I/home/jestemleon/Dokumenty/ProjektSCZR/allegro 
 
