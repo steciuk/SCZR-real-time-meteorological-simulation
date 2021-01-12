@@ -133,7 +133,7 @@ void *LoggingThread(void *threadargs = nullptr) {
 
         if (temp && output.good()) {
             auto time = std::chrono::duration_cast<std::chrono::microseconds>(log.end - log.start).count();
-            output << log.id << ": " << time << endl;
+            output << log.id << " temp: " << log.temp << " time: " << time << endl;
         }
     }
 }

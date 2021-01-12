@@ -68,6 +68,28 @@ cstring
 
 ../include/utilities.h
 
+/home/jestemleon/Dokumenty/SCZR/src/ProcessA.cpp
+ProcessA.h
+/home/jestemleon/Dokumenty/SCZR/src/ProcessA.h
+cstdlib
+-
+
+/home/jestemleon/Dokumenty/SCZR/src/ProcessB.cpp
+ProcessB.h
+/home/jestemleon/Dokumenty/SCZR/src/ProcessB.h
+cstdlib
+-
+unistd.h
+-
+
+/home/jestemleon/Dokumenty/SCZR/src/ProcessC.cpp
+ProcessC.h
+/home/jestemleon/Dokumenty/SCZR/src/ProcessC.h
+
+/home/jestemleon/Dokumenty/SCZR/src/SharedMemory.cpp
+SharedMemory.h
+/home/jestemleon/Dokumenty/SCZR/src/SharedMemory.h
+
 /home/jestemleon/Dokumenty/SCZR/src/main.cpp
 iostream
 -

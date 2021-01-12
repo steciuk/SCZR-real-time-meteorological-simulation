@@ -14,7 +14,8 @@
         shmAB.pop(&fromA);
         auto halfway = std::chrono::system_clock::now();
 
-        log.id = fromA.temp;
+        log.id = fromA.id;
+        log.temp = fromA.temp;
         log.start = fromA.timestamp;
         log.end = halfway;
         queueB.push(&log);

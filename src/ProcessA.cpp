@@ -16,6 +16,7 @@ struct thread_data {
     int minTemp;
     int maxTemp;
     int seed;
+    SharedMemory *shm;
 };
 
 void *RunStation(void *threadarg) {
@@ -42,15 +43,19 @@ void *RunStation(void *threadarg) {
         else if(temp < minTemp)
             temp = minTemp;
 
+        cout << id << endl;
+        cout << temp << endl;
+
         /* do B przekazywane bedzie:
         temp
          x
          y
         */
 
-//      toB.temp = temp;
-//      toB.timestamp = std::chrono::system_clock::now();
-//      shmAB.push(&toB);
+        toB.id = id;
+        toB.temp = temp;
+        toB.timestamp = std::chrono::system_clock::now();
+        my_data->shm->push(&toB);
         usleep(500000);
         i++;
     }
@@ -125,6 +130,7 @@ void *RunStation(void *threadarg) {
         td[iter].minTemp = minTemp;
         td[iter].maxTemp = maxTemp;
         td[iter].seed = seed;
+        td[iter].shm = &shmAB;
 
         rc = pthread_create(&threads[iter], NULL, RunStation, (void *) &td[iter]);
 

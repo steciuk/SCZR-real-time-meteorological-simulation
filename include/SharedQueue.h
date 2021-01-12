@@ -19,6 +19,7 @@ struct station_message {
 
 struct log_message {
     int id;
+    double temp;
     std::chrono::system_clock::time_point start;
     std::chrono::system_clock::time_point end;
 };
