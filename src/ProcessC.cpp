@@ -37,9 +37,9 @@
             float max_temp = -1000;
             float min_temp = 1000;
             float min_x = 0;
-            float max_x = 0;
+            float max_x = 20;
             float min_y = 0;
-            float max_y = 0;
+            float max_y = 20;
             int current_x, current_y;
             int max_temperature_x, max_temperature_y, min_temperature_x, min_temperature_y;
             float tmp, tmp2, current_temperature = 0;
@@ -57,14 +57,14 @@
                 if (dane[i][2] < min_temp)
                     min_temp = dane[i][2];
 
-                if (dane[i][0] > max_x)
-                    max_x = dane[i][0];
+//                if (dane[i][0] > max_x)
+//                    max_x = dane[i][0];
 
 //                if (dane[i][0] < min_x)
 //                    min_x = dane[i][0];
-
-                if (dane[i][1] > max_y)
-                    max_y = dane[i][1];
+//
+//                if (dane[i][1] > max_y)
+//                    max_y = dane[i][1];
 
 //                if (dane[i][1] < min_y)
 //                    min_y = dane[i][1];
@@ -126,8 +126,13 @@
 
                 }
             for (int i = 0; i < stations; ++i) {
-                al_draw_text(font, al_map_rgb(0, 0, 0), dane[i][0], dane[i][0], ALLEGRO_ALIGN_CENTER,
-                             max_temp_char);
+                current_x = ((dane[i][0]-min_x)*(620/(max_x-min_x)));
+                current_y = ((dane[i][1]-min_y)*(480/(max_y-min_y)));
+
+                std::string s3 = std::to_string((dane[i][2]));
+                char const *temp_char = s3.c_str();  //use char const* as target type
+                al_draw_text(font, al_map_rgb(0, 0, 0), current_x, current_y, ALLEGRO_ALIGN_CENTER,
+                             temp_char);
             }
 //                al_draw_text(font, al_map_rgb(0, 0, 0), max_temperature_x, max_temperature_y, ALLEGRO_ALIGN_CENTER,
 //                             max_temp_char);
