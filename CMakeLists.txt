@@ -4,6 +4,8 @@ project(SCZR)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -lrt")
+SET(ALLEGRO_ROOT allegro/)
+
 
 find_package (Threads)
 include_directories(include)
@@ -14,3 +16,18 @@ find_library(LIBRT rt)
 if(LIBRT)
     target_link_libraries(SCZR ${LIBRT})
 endif()
+
+INCLUDE_DIRECTORIES( ${ALLEGRO_ROOT}/include)
+LINK_DIRECTORIES( /${ALLEGRO_ROOT}/lib )
+
+
+
+TARGET_INCLUDE_DIRECTORIES(SCZR PUBLIC ${ALLEGRO_ROOT})
+TARGET_LINK_LIBRARIES(SCZR allegro
+        allegro_color
+        allegro_main
+        allegro_primitives
+        allegro_ttf
+        allegro_acodec
+        allegro_audio
+        allegro_font)
