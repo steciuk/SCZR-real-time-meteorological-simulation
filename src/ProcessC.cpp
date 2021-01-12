@@ -10,14 +10,14 @@
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
+#include <cfloat>
 
 [[noreturn]] void ProcessC::operate(int stations) {
     data fromB{};
     log_message log{};
 
-    bool first = true;
     float dane[MAX_STATIONS][3]{}; /*= {{2,5,40}, {3,7,35}, {10, 17, 6}, {9, 2, 20}, {4, 1, 30}, {5, 8, 43}, {5,10,20}, {1,10,30},{10,10,30}, {5,5,4}};*/
-
+    float dists[stations];
         al_init();
         al_install_keyboard();
         al_init_primitives_addon();
@@ -86,7 +86,7 @@
             log.end = end;
             queueC.push(&log);
 
-            al_wait_for_event(queue, &event);
+//            al_wait_for_event(queue, &event);
 
 //        if(event.type == ALLEGRO_EVENT_TIMER)
 //            redraw = true;
@@ -94,24 +94,27 @@
             if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
                 break;
 
-            if(event.type == ALLEGRO_EVENT_KEY_DOWN)
-            {
-                first = false;
+//            if(event.type == ALLEGRO_EVENT_KEY_DOWN)
+//            {
                 al_clear_to_color(al_map_rgb(255, 255, 255));
+                std::cout<<"Kurczak"<<std::endl;
                 for (int w = 0; w < 620; w+=4) {
                     for (int h = 0; h < 480; h+=4) {
                         for (int i = 0; i < 10; ++i) {
                             current_x = ((dane[i][0]-min_x)*(620/(max_x-min_x)));
                             current_y = ((dane[i][1]-min_y)*(480/(max_y-min_y)));
-                            if(current_y == h && current_x == w){
-                                tmp = 1;
+                            dists[i] = abs((current_x - w) * (current_x - w)) + abs((current_y - h) * (current_y - h)) + FLT_EPSILON;
 
-                            }else {
-                                tmp = 1 /
-                                      sqrt((current_x - w) * (current_x - w) + (current_y - h) * (current_y - h));
-                            }
-                            current_temperature += dane[i][2]*tmp;
-                            tmp2+=tmp;
+
+                            //                            if(current_y == h && current_x == w){
+//                                tmp = 1;
+//
+//                            }else {
+//                                tmp = 1 /
+//                                      sqrt((current_x - w) * (current_x - w) + (current_y - h) * (current_y - h));
+//                            }
+//                            current_temperature += dane[i][2]*tmp;
+//                            tmp2+=tmp;
                             if (dane[i][2] == max_temp) {
                                 max_temperature_x = current_x;
                                 max_temperature_y = current_y;
@@ -123,24 +126,26 @@
                             }
 
                         }
+                        for (int i = 0; i < stations; ++i) {
+                            float nom = 1 / dists[i];
+                            float den = 0;
+                            for(int j = 0; j < stations; ++j)
+                                den += 1 / dists[j];
 
-                        current_temperature/=tmp2;
-//                        std::cout<<current_temperature<<std::endl;
-                        current_temperature = ((current_temperature-min_temp)*(255/(max_temp-min_temp)));
+                            current_temperature += nom/den * dane[i][2];
+                        }
+
+                        float step = 5;
+                        int current_temperature_r = floor(     (current_temperature-min_temp)*(1/(max_temp-min_temp)) * step) * 255/step;
+                        int current_temperature_g = floor( (1 - (current_temperature-min_temp)*(1/(max_temp-min_temp))) * step) * 111/step;
+                        int current_temperature_b = floor( (1 - (current_temperature-min_temp)*(1/(max_temp-min_temp))) * step) * 255/step;
+
+                        al_draw_filled_rectangle(w, h, w+4, h+4, al_map_rgb(current_temperature_r, current_temperature_g, current_temperature_b));
+
+//                        current_temperature/=tmp2;
 //                        current_temperature = ((current_temperature-min_temp)*(255/(max_temp-min_temp)));
-//                        current_temperature_r = ((current_temperature-min_temp)*(255/(max_temp-min_temp)));
-//                        current_temperature_g = 110 - ((current_temperature-min_temp)*(110/(max_temp-min_temp)));
-//                        current_temperature_b = 255 - ((current_temperature-min_temp)*(255/(max_temp-min_temp)));
-
-//                        step = 20;
-//                        current_temperature_r = floor(     (current_temperature-min_temp)*(1/(max_temp-min_temp)) * step) * 255/step;
-//                        current_temperature_g = floor( 1 - (current_temperature-min_temp)*(1/(max_temp-min_temp)) * step) * 111/step;
-//                        current_temperature_b = floor( 1 - (current_temperature-min_temp)*(1/(max_temp-min_temp)) * step) * 255/step;
-//                        std::cout << current_temperature_r << "\n B: "<<current_temperature_b<<"\nG: "<< current_temperature_g<<std::endl;
 //
-
-//                        al_draw_filled_rectangle(w, h, w+4, h+4, al_map_rgb(current_temperature_r, current_temperature_g, current_temperature_b));
-                        al_draw_filled_rectangle(w, h, w+4, h+4, al_map_rgb(current_temperature, 127, 0));
+//                        al_draw_filled_rectangle(w, h, w+4, h+4, al_map_rgb(current_temperature, 127, 0));
                         current_temperature = 0;
                         tmp2 = 0;
                     }
@@ -153,7 +158,7 @@
                              min_temp_char);
 
 
-            }
+//            }
 
 
             al_flip_display();
