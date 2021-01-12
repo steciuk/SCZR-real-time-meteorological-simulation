@@ -60,11 +60,9 @@ void *RunStation(void *threadarg) {
 
 [[noreturn]] void ProcessA::operate(int stations) {
     //map params
-    int seed = 1;
-    double density = 1.0; // min: 0, max: 1.0
-    int x = 2;
-    int y = 2;
-    // density 1.0 oraz rozmiar 2x2 = 4 watki
+    int seed = 0;
+    int x = 20;
+    int y = 20;
 
     //gen params
     double maxTempStep = 1.0;
@@ -76,45 +74,45 @@ void *RunStation(void *threadarg) {
     else
         srand(seed);
 
-    int maxStations = stations;
-    int stationsData[maxStations][3]; //0:x, 1:y, 2:startTemp
-    int numMap[y][x];
-    int numStations = 0;
+    int stationsData[stations][3]; //0:x, 1:y, 2:startTemp
+    int numMap[x][y];
 
-    //cords
-    for(int i=0; i<y; i++){
-        for(int j=0; j<x; j++){
-            double r = ((double)rand() / RAND_MAX);
-            if(r < density) {
-                stationsData[numStations][0] = j;
-                stationsData[numStations][1] = i;
-                numStations++;
-                numMap[i][j] = 1;
-            }else
-                numMap[i][j] = 0;
-        }
+    for(int i=0; i<x; i++)
+        for(int j=0; j<y; j++)
+            numMap[i][j] = 0;
+
+    int rx = 0;
+    int ry = 0;
+    for(int i=0; i<stations; i++){
+        do {
+            rx = (rand() % x);
+            ry = (rand() % y);
+        }while(numMap[rx][ry] != 0);
+
+        stationsData[i][0] = rx;
+        stationsData[i][1] = ry;
+        numMap[rx][ry] = 1;
     }
 
-    //print stations map
-//    for(int i=0; i<y; i++) {
-//        for(int j=0; j<y; j++)
-//            cout << numMap[i][j];
-//
-//        cout << endl;
-//    }
+    for(int i=0; i<x; i++) {
+        for(int j=0; j<y; j++)
+            cout << numMap[i][j];
+
+        cout << endl;
+    }
 
     //startig temps
-    for(int i=0; i < numStations; i++){
+    for(int i=0; i < stations; i++){
         int startingTemp = (rand() % maxTemp) + minTemp;
         stationsData[i][2] = startingTemp;
     }
 
-    pthread_t threads[numStations];
-    thread_data td[numStations];
+    pthread_t threads[stations];
+    thread_data td[stations];
     int rc;
     int iter;
 
-    for( iter = 0; iter < maxStations; iter++ ) {
+    for( iter = 0; iter < stations; iter++ ) {
         cout <<"creating thread: " << iter << endl;
         td[iter].id = iter;
         td[iter].x = stationsData[iter][0];
