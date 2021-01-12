@@ -27,8 +27,8 @@ void *RunStation(void *threadarg) {
     int id = my_data->id;
     int x = my_data->x;
     int y = my_data->y;
-    double temp = my_data->startTemp;
-    double maxStep = my_data->maxStep;
+    float temp = my_data->startTemp;
+    float maxStep = my_data->maxStep;
     int minTemp = my_data->minTemp;
     int maxTemp = my_data->maxTemp;
     srand(my_data->seed);
@@ -37,8 +37,8 @@ void *RunStation(void *threadarg) {
 
     while(true) {
         station_message toB{};
-        double f = (double)rand() / RAND_MAX;
-        double step = -maxStep + f * 2 * maxStep;
+        float f = (float)rand() / RAND_MAX;
+        float step = -maxStep + f * 2 * maxStep;
         temp += step;
         if(temp > maxTemp)
             temp = maxTemp;
@@ -51,7 +51,7 @@ void *RunStation(void *threadarg) {
         toB.val = temp;
         toB.timestamp = std::chrono::system_clock::now();
         my_data->mq->push(&toB);
-        sleep(1 + rand() % 3);
+        //sleep(1 + rand() % 3);
     }
 
     pthread_exit(NULL);
@@ -65,7 +65,7 @@ void *RunStation(void *threadarg) {
     int y = 20;
 
     //gen params
-    double maxTempStep = 1.0;
+    float maxTempStep = 1.0;
     int minTemp = -10;
     int maxTemp = 40;
 
@@ -124,7 +124,7 @@ void *RunStation(void *threadarg) {
         td[iter].seed = seed;
         td[iter].mq = &queueA;
 
-        rc = pthread_create(&threads[iter], NULL, RunStation, (void *) &td[iter]);
+        rc = pthread_create(&threads[iter], nullptr, RunStation, (void *) &td[iter]);
 
         if (rc) {
             cout << "Error:unable to create thread," << rc << endl;

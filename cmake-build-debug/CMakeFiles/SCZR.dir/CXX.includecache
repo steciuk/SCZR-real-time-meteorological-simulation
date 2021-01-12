@@ -50,16 +50,14 @@ cstring
 
 ../include/utilities.h
 
-/home/krystian/CLionProjects/SCZR/src/ProcessC.cpp
+/home/jestemleon/Dokumenty/SCZR/src/ProcessC.cpp
 ProcessC.h
-/home/krystian/CLionProjects/SCZR/src/ProcessC.h
+/home/jestemleon/Dokumenty/SCZR/src/ProcessC.h
 allegro5/allegro5.h
 -
 allegro5/allegro_font.h
 -
 allegro5/allegro_primitives.h
--
-allegro5/allegro_color.h
 -
 iostream
 -

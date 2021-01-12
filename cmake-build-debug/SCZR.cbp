@@ -8,129 +8,127 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/krystian/CLionProjects/SCZR/cmake-build-debug"/>
+				<Option working_dir="/home/jestemleon/Dokumenty/SCZR/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/krystian/CLionProjects/SCZR/cmake-build-debug"/>
+				<Option working_dir="/home/jestemleon/Dokumenty/SCZR/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/krystian/CLionProjects/SCZR/cmake-build-debug"/>
+				<Option working_dir="/home/jestemleon/Dokumenty/SCZR/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="SCZR">
-				<Option output="/home/krystian/CLionProjects/SCZR/cmake-build-debug/SCZR" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/krystian/CLionProjects/SCZR/cmake-build-debug"/>
+				<Option output="/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/SCZR" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jestemleon/Dokumenty/SCZR/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/krystian/CLionProjects/SCZR/include"/>
-					<Add directory="/home/krystian/CLionProjects/SCZR/allegro/include"/>
-					<Add directory="/home/krystian/CLionProjects/SCZR/allegro"/>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/home/jestemleon/Dokumenty/SCZR/include"/>
+					<Add directory="/home/jestemleon/Dokumenty/SCZR/allegro/include"/>
+					<Add directory="/home/jestemleon/Dokumenty/SCZR/allegro"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/10/../../../../include/c++/10"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/10/../../../../include/c++/10/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/10/../../../../include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/10/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 SCZR"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 SCZR"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="SCZR/fast">
-				<Option output="/home/krystian/CLionProjects/SCZR/cmake-build-debug/SCZR" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/krystian/CLionProjects/SCZR/cmake-build-debug"/>
+				<Option output="/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/SCZR" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jestemleon/Dokumenty/SCZR/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/krystian/CLionProjects/SCZR/include"/>
-					<Add directory="/home/krystian/CLionProjects/SCZR/allegro/include"/>
-					<Add directory="/home/krystian/CLionProjects/SCZR/allegro"/>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/home/jestemleon/Dokumenty/SCZR/include"/>
+					<Add directory="/home/jestemleon/Dokumenty/SCZR/allegro/include"/>
+					<Add directory="/home/jestemleon/Dokumenty/SCZR/allegro"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/10/../../../../include/c++/10"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/10/../../../../include/c++/10/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/10/../../../../include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/10/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 SCZR/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/krystian/CLionProjects/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 SCZR/fast"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/jestemleon/Dokumenty/SCZR/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/include/AbstractProcess.h">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/include/AbstractProcess.h">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/include/ProcessA.h">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/include/ProcessA.h">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/include/ProcessB.h">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/include/ProcessB.h">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/include/ProcessC.h">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/include/ProcessC.h">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/include/SharedMemory.h">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/include/SharedMemory.h">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/include/utilities.h">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/include/utilities.h">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/src/ProcessA.cpp">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/src/ProcessA.cpp">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/src/ProcessB.cpp">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/src/ProcessB.cpp">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/src/ProcessC.cpp">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/src/ProcessC.cpp">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/src/SharedMemory.cpp">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/src/SharedMemory.cpp">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/src/SharedQueue.cpp">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/src/SharedQueue.cpp">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/src/Station.cpp">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/src/Station.cpp">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/src/Stations.cpp">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/src/Stations.cpp">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/src/main.cpp">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/src/main.cpp">
 			<Option target="SCZR"/>
 		</Unit>
-		<Unit filename="/home/krystian/CLionProjects/SCZR/CMakeLists.txt">
+		<Unit filename="/home/jestemleon/Dokumenty/SCZR/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
