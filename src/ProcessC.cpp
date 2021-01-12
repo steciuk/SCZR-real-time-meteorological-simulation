@@ -129,7 +129,13 @@
             for (int i = 0; i < stations; ++i) {
                 current_x = ((dane[i][0]-min_x)*(620/(max_x-min_x)));
                 current_y = ((dane[i][1]-min_y)*(480/(max_y-min_y)));
-                std::string s3 = std::to_string((dane[i][2]));
+
+                float t = dane[i][2];
+                int a = floor(t);
+                int b = (t - a) * 100;
+                std::string output = std::to_string(a) + "." + std::to_string(b);
+                std::string s3 = output;
+
                 char const *temp_char = s3.c_str();  //use char const* as target type
                 al_draw_text(font, al_map_rgb(0, 0, 0), current_x, current_y, ALLEGRO_ALIGN_CENTER,
                              temp_char);
