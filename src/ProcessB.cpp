@@ -8,7 +8,12 @@
 #include <iostream>
 
 [[noreturn]] void ProcessB::operate(int stations) {
+    bool buff = false;
     data toC{};
+    for(int i = 0; i < stations; i++) {
+        toC.id = i;
+        toC.coords[i][0] = toC.coords[i][1] = toC.coords[i][2] = 0;
+    }
 
     while(true) {
         station_message fromA;
@@ -23,11 +28,19 @@
         log.end = halfway;
         queueB.push(&log);
 
-        toC.id = fromA.id;
+        //toC.id = fromA.id;
         toC.coords[fromA.id][0] = fromA.x;
         toC.coords[fromA.id][1] = fromA.y;
         toC.coords[fromA.id][2] = fromA.val;
-        toC.timestamp = std::chrono::system_clock::now();
-        shmBC.push(&toC);
+        for(int i = 0; i < stations; i++) {
+            if(toC.coords[i][0] == 0)
+                break;
+            buff = true;
+        }
+
+        if (buff) {
+            toC.timestamp = std::chrono::system_clock::now();
+            shmBC.push(&toC);
+        }
     }
 }
