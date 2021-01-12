@@ -18,7 +18,7 @@
 
 struct data {
     int id;
-    int val;
+    int temp;
     std::chrono::system_clock::time_point timestamp;
 };
 

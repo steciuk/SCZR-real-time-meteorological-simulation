@@ -12,7 +12,7 @@
         shmBC.pop(&fromB);
         auto end = std::chrono::system_clock::now();
 
-        log.id = fromB.val;
+        log.id = fromB.temp;
         log.start = fromB.timestamp;
         log.end = end;
         queueC.push(&log);

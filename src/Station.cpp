@@ -6,7 +6,7 @@
 using namespace std;
 
 /*struct thread_data {
-    int thread_id;
+    int id;
     int num;
 };*/
 
@@ -31,7 +31,7 @@ ostream &operator<<(ostream &strm, const Station &station) {
     srand(time(nullptr));
     for(int i=0; i<num; i++){
         int result = 10 + (rand() % 40);
-        cout << "Thread ID : " << my_data->thread_id << " Station: " << this << " Temp: " << result;
+        cout << "Thread ID : " << my_data->id << " Station: " << this << " Temp: " << result;
     }
 
     pthread_exit(NULL);
