@@ -28,7 +28,7 @@
         log.end = halfway;
         queueB.push(&log);
 
-        //toC.id = fromA.id;
+        toC.id = fromA.id;
         toC.coords[fromA.id][0] = fromA.x;
         toC.coords[fromA.id][1] = fromA.y;
         toC.coords[fromA.id][2] = fromA.val;
