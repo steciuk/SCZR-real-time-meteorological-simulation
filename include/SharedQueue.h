@@ -14,7 +14,7 @@
 struct station_message {
     int id;
     int x, y;
-    int val;
+    double val;
     std::chrono::system_clock::time_point timestamp;
 };
 

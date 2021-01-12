@@ -3,16 +3,17 @@
 //
 
 #include "ProcessC.h"
+#include <iostream>
 
-[[noreturn]] void ProcessC::operate() {
+[[noreturn]] void ProcessC::operate(int stations) {
     data fromB{};
-    log_message log{};
 
     while(true) {
+        log_message log{};
+
         shmBC.pop(&fromB);
         auto end = std::chrono::system_clock::now();
 
-        log.id = fromB.temp;
         log.start = fromB.timestamp;
         log.end = end;
         queueC.push(&log);

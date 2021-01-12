@@ -16,12 +16,13 @@ using namespace std;
 void *LoggingThread(void *n);
 
 template <typename T>
-pid_t startProcess();
+pid_t startProcess(int s);
 
 int main() {
     pid_t procA, procB, procC;
     pthread_t loggerB, loggerC;
     int logger_idB, logger_idC;
+    int stations;
 
     char option, aff = ' ';
     cout << "Choose scheduling policy and visualiser process affinity first:\n";
@@ -32,18 +33,24 @@ int main() {
         cout << "Should visualiser be bound to cpu core? [Y/N]: ";
         cin >> aff;
     }
+    cout << "How many stations should be visualised? (between 1 - 15): ";
+    cin >> stations;
+    if(stations < 1 || stations > 15) {
+        cout << "Incorrect amount. Please write correct number: ";
+        cin >> stations;
+    }
 
-    sem_t *producerAB = sem_open(AB_SEM_PROD, O_CREAT, 0660, 1);
-    sem_t *consumerAB = sem_open(AB_SEM_CONS, O_CREAT, 0660, 0);
+    //sem_t *producerAB = sem_open(AB_SEM_PROD, O_CREAT, 0660, 1);
+    //sem_t *consumerAB = sem_open(AB_SEM_CONS, O_CREAT, 0660, 0);
     sem_t *producerBC = sem_open(BC_SEM_PROD, O_CREAT, 0660, 1);
     sem_t *consumerBC = sem_open(BC_SEM_CONS, O_CREAT, 0660, 0);
     mqd_t data_qA = mq_open(MQUEUE_A, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
     mqd_t log_qB = mq_open(MQUEUE_B, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
     mqd_t log_qC = mq_open(MQUEUE_C, O_CREAT | O_RDWR | O_NONBLOCK, 0660, nullptr);
 
-    procA = startProcess<ProcessA>();   //generator
-    procB = startProcess<ProcessB>();   //analyser
-    procC = startProcess<ProcessC>();   //visualiser
+    procA = startProcess<ProcessA>(stations);   //generator
+    procB = startProcess<ProcessB>(stations);   //analyser
+    procC = startProcess<ProcessC>(stations);   //visualiser
     logger_idB = pthread_create(&loggerB, nullptr, LoggingThread, (void *) MQUEUE_B);
     logger_idC = pthread_create(&loggerC, nullptr, LoggingThread, (void *) MQUEUE_C);
     if(logger_idB) {
@@ -107,8 +114,8 @@ int main() {
     mq_unlink(MQUEUE_A);
     mq_unlink(MQUEUE_B);
     mq_unlink(MQUEUE_C);
-    sem_unlink(AB_SEM_CONS);
-    sem_unlink(AB_SEM_PROD);
+    //sem_unlink(AB_SEM_CONS);
+    //sem_unlink(AB_SEM_PROD);
     sem_unlink(BC_SEM_PROD);
     sem_unlink(BC_SEM_PROD);
 
@@ -135,17 +142,17 @@ void *LoggingThread(void *threadargs = nullptr) {
 
         if (temp && output.good()) {
             auto time = std::chrono::duration_cast<std::chrono::microseconds>(log.end - log.start).count();
-            output <<"Station ID: " << log.id << " time: " << time << endl;
+            output <<"Station ID: " << log.id  << " Temp: " << log.temp << " time: " << time << endl;
         }
     }
 }
 
 template <typename T>
-pid_t startProcess() {
+pid_t startProcess(int s) {
     pid_t result = fork();
     if (result == 0) {
         T process;
-        process.operate();
+        process.operate(s);
         return 0;
     }
     else

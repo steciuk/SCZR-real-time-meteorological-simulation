@@ -1,20 +1,12 @@
-Station ID: 0 time: 42
-Station ID: 1 time: 44
-Station ID: 2 time: 44
-Station ID: 3 time: 47
-Station ID: 0 time: 18
-Station ID: 1 time: 14
-Station ID: 2 time: 21
-Station ID: 3 time: 8
-Station ID: 0 time: 19
-Station ID: 1 time: 18
-Station ID: 2 time: 31
-Station ID: 3 time: 13
-Station ID: 0 time: 17
-Station ID: 1 time: 12
-Station ID: 2 time: 18
-Station ID: 3 time: 13
-Station ID: 0 time: 18
-Station ID: 1 time: 15
-Station ID: 2 time: 25
-Station ID: 3 time: 14
+Station ID: 0 Temp: 0 time: 45
+Station ID: 1 Temp: 0 time: 46
+Station ID: 2 Temp: 0 time: 28
+Station ID: 0 Temp: 0 time: 19
+Station ID: 1 Temp: 0 time: 11
+Station ID: 2 Temp: 0 time: 13
+Station ID: 2 Temp: 0 time: 18
+Station ID: 0 Temp: 0 time: 29
+Station ID: 1 Temp: 0 time: 26
+Station ID: 2 Temp: 0 time: 34
+Station ID: 0 Temp: 0 time: 21
+Station ID: 1 Temp: 0 time: 21

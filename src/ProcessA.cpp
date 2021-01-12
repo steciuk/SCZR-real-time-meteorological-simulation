@@ -22,8 +22,8 @@ struct thread_data {
 };
 
 void *RunStation(void *threadarg) {
-    struct thread_data *my_data;
-    my_data = (struct thread_data *) threadarg;
+    thread_data *my_data;
+    my_data = (thread_data *) threadarg;
     int id = my_data->id;
     int x = my_data->x;
     int y = my_data->y;
@@ -51,14 +51,14 @@ void *RunStation(void *threadarg) {
         toB.val = temp;
         toB.timestamp = std::chrono::system_clock::now();
         my_data->mq->push(&toB);
-        sleep(1);
+        sleep(1 + rand() % 3);
     }
 
     pthread_exit(NULL);
 }
 
 
-[[noreturn]] void ProcessA::operate() {
+[[noreturn]] void ProcessA::operate(int stations) {
     //map params
     int seed = 1;
     double density = 1.0; // min: 0, max: 1.0
@@ -76,7 +76,7 @@ void *RunStation(void *threadarg) {
     else
         srand(seed);
 
-    int maxStations = x*y;
+    int maxStations = stations;
     int stationsData[maxStations][3]; //0:x, 1:y, 2:startTemp
     int numMap[y][x];
     int numStations = 0;
@@ -104,17 +104,17 @@ void *RunStation(void *threadarg) {
 //    }
 
     //startig temps
-    for(int i=0; i<numStations; i++){
+    for(int i=0; i < numStations; i++){
         int startingTemp = (rand() % maxTemp) + minTemp;
         stationsData[i][2] = startingTemp;
     }
 
     pthread_t threads[numStations];
-    struct thread_data td[numStations];
+    thread_data td[numStations];
     int rc;
     int iter;
 
-    for( iter = 0; iter < numStations; iter++ ) {
+    for( iter = 0; iter < maxStations; iter++ ) {
         cout <<"creating thread: " << iter << endl;
         td[iter].id = iter;
         td[iter].x = stationsData[iter][0];

@@ -15,7 +15,7 @@ public:
     ProcessC() : shmBC(false, SHMEM_BC, BC_SEM_CONS, BC_SEM_PROD),
         queueC(true, true, MQUEUE_C) {};
 
-    [[noreturn]] void operate() override;
+    [[noreturn]] void operate(int stations) override;
 private:
     SharedMemory shmBC;
     SharedQueue queueC;

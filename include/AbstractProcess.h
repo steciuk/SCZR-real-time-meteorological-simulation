@@ -8,7 +8,7 @@
 
 class AbstractProcess {
 public:
-    [[noreturn]] virtual void operate() = 0;
+    [[noreturn]] virtual void operate(int stations) = 0;
 };
 
 

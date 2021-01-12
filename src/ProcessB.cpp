@@ -5,10 +5,12 @@
 #include "ProcessB.h"
 #include <cstdlib>
 #include <unistd.h>
+#include <iostream>
 
-[[noreturn]] void ProcessB::operate() {
+[[noreturn]] void ProcessB::operate(int stations) {
+    data toC{};
+
     while(true) {
-        data toC{};
         station_message fromA;
         log_message log{};
 
@@ -21,7 +23,9 @@
         log.end = halfway;
         queueB.push(&log);
 
-        toC.temp = fromA.val / 3;
+        toC.coords[fromA.id][0] = fromA.x;
+        toC.coords[fromA.id][1] = fromA.y;
+        toC.temp[fromA.id] = fromA.val;
         toC.timestamp = std::chrono::system_clock::now();
         shmBC.push(&toC);
     }

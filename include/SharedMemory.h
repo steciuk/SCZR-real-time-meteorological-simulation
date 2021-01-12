@@ -16,9 +16,11 @@
 #include <semaphore.h>
 #include <chrono>
 
+#define MAX_STATIONS 15
+
 struct data {
-    int id;
-    double temp;
+    int coords[MAX_STATIONS][2];
+    double temp[MAX_STATIONS];
     std::chrono::system_clock::time_point timestamp;
 };
 
