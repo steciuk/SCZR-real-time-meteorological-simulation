@@ -12,15 +12,16 @@
 #include <cstdlib>
 #include <cfloat>
 
+
 [[noreturn]] void ProcessC::operate(int stations) {
     data fromB{};
     log_message log{};
-
     float dane[MAX_STATIONS][3]{};
     float dists[stations];
         al_init();
         al_init_primitives_addon();
         ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
+        al_set_new_display_flags(ALLEGRO_NOFRAME);
         ALLEGRO_DISPLAY* disp = al_create_display(620, 480);
         ALLEGRO_FONT* font = al_create_builtin_font();
 
@@ -128,7 +129,6 @@
             for (int i = 0; i < stations; ++i) {
                 current_x = ((dane[i][0]-min_x)*(620/(max_x-min_x)));
                 current_y = ((dane[i][1]-min_y)*(480/(max_y-min_y)));
-
                 std::string s3 = std::to_string((dane[i][2]));
                 char const *temp_char = s3.c_str();  //use char const* as target type
                 al_draw_text(font, al_map_rgb(0, 0, 0), current_x, current_y, ALLEGRO_ALIGN_CENTER,
