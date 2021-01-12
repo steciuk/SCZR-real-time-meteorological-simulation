@@ -6,34 +6,34 @@ CMakeFiles/SCZR.dir/src/ProcessA.cpp.o
  ../include/ProcessA.h
  ../include/SharedQueue.h
  ../include/utilities.h
- /home/jestemleon/Dokumenty/ProjektSCZR/src/ProcessA.cpp
+ /home/jestemleon/Dokumenty/SCZR/src/ProcessA.cpp
 CMakeFiles/SCZR.dir/src/ProcessB.cpp.o
  ../include/AbstractProcess.h
  ../include/ProcessB.h
  ../include/SharedMemory.h
  ../include/SharedQueue.h
  ../include/utilities.h
- /home/jestemleon/Dokumenty/ProjektSCZR/src/ProcessB.cpp
+ /home/jestemleon/Dokumenty/SCZR/src/ProcessB.cpp
 CMakeFiles/SCZR.dir/src/ProcessC.cpp.o
  ../include/AbstractProcess.h
  ../include/ProcessC.h
  ../include/SharedMemory.h
  ../include/SharedQueue.h
  ../include/utilities.h
- /home/jestemleon/Dokumenty/ProjektSCZR/src/ProcessC.cpp
+ /home/jestemleon/Dokumenty/SCZR/src/ProcessC.cpp
 CMakeFiles/SCZR.dir/src/SharedMemory.cpp.o
  ../include/SharedMemory.h
- /home/jestemleon/Dokumenty/ProjektSCZR/src/SharedMemory.cpp
+ /home/jestemleon/Dokumenty/SCZR/src/SharedMemory.cpp
 CMakeFiles/SCZR.dir/src/SharedQueue.cpp.o
  ../include/SharedQueue.h
- /home/jestemleon/Dokumenty/ProjektSCZR/src/SharedQueue.cpp
+ /home/jestemleon/Dokumenty/SCZR/src/SharedQueue.cpp
 CMakeFiles/SCZR.dir/src/Station.cpp.o
- /home/jestemleon/Dokumenty/ProjektSCZR/include/Station.h
- /home/jestemleon/Dokumenty/ProjektSCZR/src/Station.cpp
+ /home/jestemleon/Dokumenty/SCZR/include/Station.h
+ /home/jestemleon/Dokumenty/SCZR/src/Station.cpp
 CMakeFiles/SCZR.dir/src/Stations.cpp.o
- /home/jestemleon/Dokumenty/ProjektSCZR/include/Station.h
- /home/jestemleon/Dokumenty/ProjektSCZR/include/Stations.h
- /home/jestemleon/Dokumenty/ProjektSCZR/src/Stations.cpp
+ /home/jestemleon/Dokumenty/SCZR/include/Station.h
+ /home/jestemleon/Dokumenty/SCZR/include/Stations.h
+ /home/jestemleon/Dokumenty/SCZR/src/Stations.cpp
 CMakeFiles/SCZR.dir/src/main.cpp.o
  ../include/AbstractProcess.h
  ../include/ProcessA.h
@@ -42,4 +42,4 @@ CMakeFiles/SCZR.dir/src/main.cpp.o
  ../include/SharedMemory.h
  ../include/SharedQueue.h
  ../include/utilities.h
- /home/jestemleon/Dokumenty/ProjektSCZR/src/main.cpp
+ /home/jestemleon/Dokumenty/SCZR/src/main.cpp

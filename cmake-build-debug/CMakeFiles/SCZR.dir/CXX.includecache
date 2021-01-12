@@ -50,9 +50,9 @@ cstring
 
 ../include/utilities.h
 
-/home/jestemleon/Dokumenty/ProjektSCZR/src/ProcessC.cpp
+/home/jestemleon/Dokumenty/SCZR/src/ProcessC.cpp
 ProcessC.h
-/home/jestemleon/Dokumenty/ProjektSCZR/src/ProcessC.h
+/home/jestemleon/Dokumenty/SCZR/src/ProcessC.h
 allegro5/allegro5.h
 -
 allegro5/allegro_font.h

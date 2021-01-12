@@ -16,7 +16,7 @@
     log_message log{};
 
     bool first = true;
-    float dane[10][3] = {{2,5,40}, {3,7,35}, {10, 17, 6}, {9, 2, 20}, {4, 1, 30}, {5, 8, 43}, {5,10,20}, {1,10,30},{10,10,30}, {5,5,4}};
+    float dane[MAX_STATIONS][3]{}; /*= {{2,5,40}, {3,7,35}, {10, 17, 6}, {9, 2, 20}, {4, 1, 30}, {5, 8, 43}, {5,10,20}, {1,10,30},{10,10,30}, {5,5,4}};*/
 
         al_init();
         al_install_keyboard();
@@ -34,57 +34,53 @@
         ALLEGRO_EVENT event;
 
 //    al_start_timer(timer);
-        float max_temp = -1000;
-        float min_temp = 1000;
-        float min_x = 10000;
-        float max_x = 0;
-        float min_y = 10000;
-        float max_y = 0;
-        int current_x, current_y;
-        int r,g,b;
-        int max_temperature_x, max_temperature_y, min_temperature_x, min_temperature_y, step;
-        float fr, fg, fb, tmp, tmp2, current_temperature_r, current_temperature_g, current_temperature_b, current_temperature = 0;
-
-
-        for (int i = 0; i < 10; ++i) {
-            if (dane[i][2] > max_temp)
-                max_temp = dane[i][2];
-
-            if (dane[i][2] < min_temp)
-                min_temp = dane[i][2];
-
-            if (dane[i][0] > max_x)
-                max_x = dane[i][0];
-
-            if (dane[i][0] < min_x)
-                min_x = dane[i][0];
-
-            if (dane[i][1] > max_y)
-                max_y = dane[i][1];
-
-            if (dane[i][1] < min_y)
-                min_y = dane[i][1];
-
-        }
-
-        std::string s1 = std::to_string((int)max_temp);
-        char const *max_temp_char = s1.c_str();  //use char const* as target type
-        std::string s2 = std::to_string((int)min_temp);
-        char const *min_temp_char = s2.c_str();  //use char const* as target type
-
-        std::cout << max_temp << std::endl;
-        std::cout << min_temp << std::endl;
-        std::cout << max_x << std::endl;
-        std::cout << min_x << std::endl;
-        std::cout << max_y << std::endl;
-        std::cout << min_y << std::endl;
-
         while(true)
         {
             log_message log{};
-
             shmBC.pop(&fromB);
             auto end = std::chrono::system_clock::now();
+
+            float max_temp = -1000;
+            float min_temp = 1000;
+            float min_x = 10000;
+            float max_x = 0;
+            float min_y = 10000;
+            float max_y = 0;
+            int current_x, current_y;
+            int r,g,b;
+            int max_temperature_x, max_temperature_y, min_temperature_x, min_temperature_y, step;
+            float fr, fg, fb, tmp, tmp2, current_temperature_r, current_temperature_g, current_temperature_b, current_temperature = 0;
+
+            for(int i = 0; i < stations; i++) {
+                dane[i][0] = fromB.coords[i][0];
+                dane[i][1] = fromB.coords[i][1];
+                dane[i][2] = fromB.coords[i][2];
+            }
+
+            for (int i = 0; i < stations; ++i) {
+                if (dane[i][2] > max_temp)
+                    max_temp = dane[i][2];
+
+                if (dane[i][2] < min_temp)
+                    min_temp = dane[i][2];
+
+                if (dane[i][0] > max_x)
+                    max_x = dane[i][0];
+
+                if (dane[i][0] < min_x)
+                    min_x = dane[i][0];
+
+                if (dane[i][1] > max_y)
+                    max_y = dane[i][1];
+
+                if (dane[i][1] < min_y)
+                    min_y = dane[i][1];
+            }
+
+            std::string s1 = std::to_string((int)max_temp);
+            char const *max_temp_char = s1.c_str();  //use char const* as target type
+            std::string s2 = std::to_string((int)min_temp);
+            char const *min_temp_char = s2.c_str();  //use char const* as target type
 
             log.start = fromB.timestamp;
             log.end = end;
@@ -170,8 +166,6 @@
         al_destroy_display(disp);
 //    al_destroy_timer(timer);
         al_destroy_event_queue(queue);
-
-
 
 }
 

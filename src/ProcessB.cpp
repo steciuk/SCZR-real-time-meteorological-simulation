@@ -25,7 +25,7 @@
 
         toC.coords[fromA.id][0] = fromA.x;
         toC.coords[fromA.id][1] = fromA.y;
-        toC.temp[fromA.id] = fromA.val;
+        toC.coords[fromA.id][2] = fromA.val;
         toC.timestamp = std::chrono::system_clock::now();
         shmBC.push(&toC);
     }
