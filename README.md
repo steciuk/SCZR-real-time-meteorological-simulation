@@ -13,7 +13,7 @@ Adam Steciuk, nr 300263
 adam.steciuk.stud@pw.edu.pl  
 
 ### Treść zadania
-Zadanie polega na zbudowaniu działającego systemu czasu rzeczywistego korzystającego z rozwiązań komunikacji międzyprocesowej zaimplementowanych w systemach Unix.
+Zadanie polega na zbudowaniu działającego systemu czasu rzeczywistego korzystającego z rozwiązań komunikacji międzyprocesowej zaimplementowanych w systemach Unix/Linux.
 
 _[Dokumentacja końcowa](https://github.com/steciuk/SCZR/blob/master/SCZR%20-%20sprawozdanie.pdf) prezentuje dokładne działanie zbudowanego systemu i wyniki przeprowadzonych testów._
 
