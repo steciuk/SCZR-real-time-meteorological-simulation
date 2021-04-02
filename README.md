@@ -5,10 +5,10 @@ Projekt wykonany w ramach przedmiotu SCZR (Systemu Czasu Rzeczywistego) w semest
 **Ocena**: 37/40
 
 ### Autorzy
-Krystian Kujawski, nr 291129
-krystian.kujawski.stud@pw.edu.pl
+Krystian Kujawski, nr 291129  
+krystian.kujawski.stud@pw.edu.pl  
 Lukasz Pokorzyński, nr 300251  
-lukasz.pokorzynski.stud@pw.edu.pl 
+lukasz.pokorzynski.stud@pw.edu.pl  
 Adam Steciuk, nr 300263  
 adam.steciuk.stud@pw.edu.pl  
 
@@ -22,4 +22,4 @@ _[Dokumentacja końcowa](https://github.com/steciuk/SCZR/blob/master/SCZR%20-%20
 * ``Allegro5``
 
 ### Instrukcja
-Do uruchomienia programu najlepiej użyć środowiska IDE CLion i na dowolnej dystrybucji systemu Unix/Linux zbudować podanyw repozytorium projekt.
+Do uruchomienia programu najlepiej użyć środowisko IDE CLion i na dowolnej dystrybucji systemu Unix/Linux zbudować podany w repozytorium projekt.
