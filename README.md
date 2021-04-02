@@ -27,4 +27,5 @@ _[Dokumentacja końcowa](https://github.com/steciuk/SCZR/blob/master/SCZR%20-%20
   * Tryby FIFO i RR dodatkowo zapytają o możliwość wywłaszczenia rdzenia procesora na rzecz procesu wizualizującego.
 * Następnie użytkownik ma przekazać wymiary mapy X i Y.
 * Ostatnią czynnością jest przekazanie liczby symulowanych stacji (min 1, maks 200).
+
 Jeżeli wszystkie czynności zostały wykonane poprawnie, to wyświetli się okno symulujące przebieg temperatury między wygenerowanymi stacjami.
